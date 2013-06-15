@@ -1,0 +1,14 @@
+*.log
+*.aux
+*.aux*
+*.d
+*.nav
+*.nav*
+*.toc
+*.toc*
+*.fls
+*.out
+*.out*
+*.snm
+
+slide.pdf

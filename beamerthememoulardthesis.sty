@@ -1,0 +1,142 @@
+\ProvidesPackage{beamerthememoulardthesis}[2012/09/04]
+
+\RequirePackage{pgfkeys, tikz}
+
+\usecolortheme{moulardthesis}
+\useinnertheme{default}
+\usefonttheme{moulardthesis}
+\useoutertheme{moulardthesis}
+
+%\setbeamertemplate{navigation symbols}{}
+\beamertemplatenavigationsymbolsempty
+
+% Full screen slides
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+% Make one image take up the entire slide area, including borders,
+% in beamer.
+% centered/centred full-screen image, no title:
+% This uses the entire whole screen
+\newcommand{\maxFrameImage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\vspace{-0.1cm}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]
+{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+% Same as before, but useful when images do not have the good ratio.
+\newcommand{\maxFrameImageHeight}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\vspace{-0.1cm}
+\includegraphics[height=\paperheight,keepaspectratio]
+{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+% Same as before, but useful when images do not have the good ratio.
+\newcommand{\maxFrameImageWidth}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\vspace{-0.1cm}
+\includegraphics[width=\paperwidth,keepaspectratio]
+{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+
+%\newenvironment{slideDecision}{%
+%  \usebackgroundtemplate{%
+%    \vspace{-2cm}
+%    \hspace{-4.5cm}
+%    \includegraphics[height=.75\paperheight]{%
+%      images/decision.jpg}}
+%  \begin{frame}
+%    \begin{list}{}{
+%        \setlength{\topsep}{0pt}%
+%        \setlength{\leftmargin}{1.1cm}%
+%        \setlength{\listparindent}{\parindent}%
+%        \setlength{\itemindent}{\parindent}%
+%        \setlength{\parsep}{\parskip}%
+%      \item[]}
+%      \begin{center}}{\end{center}\end{list}\end{}
+
+\newenvironment{changeleftmargin}[1]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newenvironment{slideDecision}{%
+  \usebackgroundtemplate{%
+    \vspace{-2cm}%
+    \hspace{-4.5cm}%
+    \includegraphics[height=.75\paperheight]{%
+      images/decision.jpg}}%
+  \begin{frame}}{\end{frame}}
+
+\newenvironment{slideAction}{%
+  \usebackgroundtemplate{%
+    \vspace{-5cm}%
+    \hspace{-2.5cm}%
+    \includegraphics[height=.75\paperheight]{%
+      images/action.jpg}}%
+  \begin{frame}}{\end{frame}}
+
+\newenvironment{slidePerception}{%
+  \usebackgroundtemplate{%
+    \vspace{-5cm}%
+    \hspace{-3.5cm}%
+    \includegraphics[height=.75\paperheight]{%
+      images/perception.jpg}}%
+  \begin{frame}}{\end{frame}}
+
+
+\newcommand{\fullFrameVideo}[3]{
+  \begin{frame}[plain, typeset second]
+    \begin{changemargin}{-1cm}{-1cm}
+      \begin{center}
+        \vspace{-0.1cm}
+        \only<second:0>{\centerline{%
+            \includemedia[%
+              addresource=#2,
+              height=.95\paperheight,
+              width=\paperwidth,
+              flashvars={
+                flv=#2
+                &autoPlay=true
+              },
+              activate=pageopen
+            ]{%
+              \includegraphics[height=\paperheight]{%
+                #1}}{player_flv_maxi.swf}%
+        }}
+      \end{center}%
+      #3
+    \end{changemargin}
+  \end{frame}
+}
